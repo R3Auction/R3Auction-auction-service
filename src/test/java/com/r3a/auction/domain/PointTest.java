@@ -1,4 +1,4 @@
-package com.r3a.auction;
+package com.r3a.auction.domain;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,9 +24,9 @@ public class PointTest {
 
     @Test
     void 충전() {
-        Point point = new Point(1000);
+        Point expected = new Point(1000);
 
-        Point expected = point.charge(10000);
+        expected.charge(10000);
 
         assertThat(expected).isEqualTo(new Point(11000));
     }

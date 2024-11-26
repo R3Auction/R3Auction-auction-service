@@ -1,4 +1,4 @@
-package com.r3a.auction;
+package com.r3a.auction.domain;
 
 import java.util.Objects;
 
@@ -6,7 +6,7 @@ public class Point {
     public static final String CREATE_EXCEPTION_MESSAGE = "포인트는 0 이상 이어야 합니다.";
     public static final int MIN_VALUE = 0;
 
-    private final int point;
+    private int point;
 
     public Point(int point) {
         if (point < MIN_VALUE) {
@@ -15,8 +15,15 @@ public class Point {
         this.point = point;
     }
 
-    public Point charge(int point) {
-        return new Point(this.point + point);
+    public void charge(int point) {
+        this.point += point;
+    }
+
+    public void decrease(int price) {
+        if (point < price) {
+            throw new IllegalArgumentException("보유머니가 부족합니다!");
+        }
+        point -= price;
     }
 
     @Override
@@ -30,4 +37,5 @@ public class Point {
     public int hashCode() {
         return Objects.hashCode(point);
     }
+
 }
